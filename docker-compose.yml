@@ -1,0 +1,24 @@
+services:
+  blog_strapi_api:
+    container_name: blog_strapi_api
+    hostname: blog_strapi_api
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_USER: strapi_user 
+      POSTGRES_PASSWORD: senha
+      POSTGRES_DB: blog-strapi
+      PGDATA: /var/lib/postgresql/data/pgdata 
+    ports:
+      - "5432:5432" # Formatação correta
+    volumes:
+      - postgres_data:/var/lib/postgresql/data 
+    networks:
+      - strapi_network
+
+volumes:
+  postgres_data:
+
+networks:
+  strapi_network:
+    driver: bridge
